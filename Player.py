@@ -7,3 +7,7 @@ class Player:
         self.p_hp = status[p_class][0]
         self.p_atk = status[p_class][1]
         self.p_def = status[p_class][2]
+
+
+play = Player(p_name="João Victor", p_class="warrior")
+print(play.p_hp)

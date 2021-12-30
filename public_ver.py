@@ -2,16 +2,23 @@ from os import system
 
 
 class Verification:
-    text = ""
-    choice = []
+
+    def __init__(self, text, choice):
+        self.text = text
+        self.choice = choice
 
     def verification(self):
         while True:
             print(self.text)
-            play_input = input(">> ")
+            for pos, val in enumerate(self.choice, start=1):
+                print(f"{pos}: {val}")
 
-            if play_input.lower() in self.choice:
-                return play_input
+            try:
+                play_input = int(input(">> "))
+                return self.choice[play_input - 1]
+
+            except ValueError and IndexError:
+                print("Você deve inserir um numero correspondente a um tópico")
 
             system("cls")
             print("Digite um valor válido!!")
@@ -34,5 +41,7 @@ def verification_tf(text):
         print("Digite um valor válido!!")
 
 
+player_class_verification = Verification(text="Qual Classe Você quer ?",
+                                         choice=["warrior", "spellcaster"])
 
-
+player_class_verification.verification()

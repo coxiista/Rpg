@@ -1,5 +1,4 @@
 class Battle:
-
     def __init__(self, player_1: object = None, player_2: object = None):
         self.player_1 = player_1
         self.player_2 = player_2

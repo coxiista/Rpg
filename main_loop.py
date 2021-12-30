@@ -1,3 +1,6 @@
+import public_ver
+
+
 def save_game(name: str, hp: int, atk: int, df: int):
     list_save = [name, hp, atk, df]
     with open("save.txt", "w") as arquivo:
@@ -36,8 +39,8 @@ def play():
     while acao != "quit":
         if new_save:
             print("Bem vindo jogador, qual seu nome ? ")
-            player_name = input(">> ")
-            save_game(player_name, 12, 15, 30)
+            player_inp = input(">> ")
+
             acao = "quit"
 
         acao = "quit"
