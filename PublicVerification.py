@@ -41,7 +41,6 @@ def verification_tf(text):
         print("Digite um valor válido!!")
 
 
-player_class_verification = Verification(text="Qual Classe Você quer ?",
-                                         choice=["warrior", "spellcaster"])
+class_player = Verification(text="Qual Classe Você quer ?",
+                            choice=["warrior", "spellcaster"])
 
-player_class_verification.verification()

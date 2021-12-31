@@ -1,52 +1,42 @@
-import public_ver
+import PublicVerification
+import Player
+
+status_player = Player.Player(p_name="", p_class="none")
 
 
-def save_game(name: str, hp: int, atk: int, df: int):
-    list_save = [name, hp, atk, df]
+def save_game():
+    list_save = [status_player.p_name, status_player.p_hp, status_player.p_atk,
+                 status_player.p_def]
+
     with open("save.txt", "w") as arquivo:
         for x in list_save:
-            arquivo.writelines(str(x) + "\n")
+            arquivo.writelines(str(x).lstrip() + "\n")
 
 
 def load_save():
-    global player_name, player_hp, player_atk, player_df
-    with open("save.txt", "r") as arquivo:
-        player_name = arquivo.readline()
-        player_hp = arquivo.readline()
-        player_atk = arquivo.readline()
-        player_df = arquivo.readline()
+    try:
+        global status_player, sucesso_load
+        with open("save.txt", "r") as arquivo:
+            status_player.p_name = arquivo.readline().replace("\n", "")
+            status_player.p_hp = arquivo.readline().replace("\n", "")
+            status_player.p_atk = arquivo.readline().replace("\n", "")
+            status_player.p_def = arquivo.readline().replace("\n", "")
 
-
-player_name = "null"
-player_hp = 0
-player_atk = 0
-player_df = 0
+    except FileNotFoundError:
+        print("Bem vindo jogador, qual seu nome ? ")
+        player_input = input(">> ")
+        status_player = Player.Player(p_name=player_input, p_class=PublicVerification.class_player.verification())
+        save_game()
 
 
 def play():
     acao = "null"
-    new_save = False
-
-    try:
-        with open("save.txt", "r") as arquivo:
-            pass
-
-    except FileNotFoundError:
-        with open("save.txt", "w") as arquivo:
-            new_save = True
-            arquivo.close()
 
     while acao != "quit":
-        if new_save:
-            print("Bem vindo jogador, qual seu nome ? ")
-            player_inp = input(">> ")
-
-            acao = "quit"
-
         acao = "quit"
 
 
-play()
-
 load_save()
-print(player_atk)
+play()
+save_game()
+
